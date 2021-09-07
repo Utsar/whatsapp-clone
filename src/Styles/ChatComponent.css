@@ -1,0 +1,79 @@
+.chatComponent{
+    display: flex;
+    flex-direction: column;
+    flex: 0.65;
+}
+.chatComponentHeader{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.chatComponentHeaderInfo{
+    flex:1;
+    padding-left: 15px;
+}
+.chatComponentHeaderInfo > h3{
+    margin-bottom: 3px;
+    font-weight: 400;
+}
+.chatComponentHeaderInfo > p{
+    color: gray;
+}
+.chatComponentBody{
+    flex: 1;
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-repeat: repeat;
+    background-position: center;
+    overflow: scroll;
+    padding: 25px
+}
+.chatComponentMessage{
+    position: relative;
+    font-size: 15px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+.chatComponentBodyTimeStamp{
+    margin-left: 10px;
+    font-size: xx-small;
+}
+.chatComponentBodyUserInfo{
+    position: absolute;
+    top: -20px;
+    font-weight: 750;
+    font-size: small;
+}
+
+.chatComponentMessageReceiver{
+    margin-left: auto;
+    background-color: #dcf8c6;
+}
+.chatComponentMessagebar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    border-top: 1px solid lightgray;
+}
+.chatComponentMessagebar > form{
+    flex: 1;
+    display: flex;
+}
+
+.chatComponentMessagebar > form > button{
+    display: none;
+}
+.chatComponentMessagebar > form > input{
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+}
+.chatComponentMessagebar > MuiSvgIcon-root{
+    padding: 10px;
+    color: gray;
+}
