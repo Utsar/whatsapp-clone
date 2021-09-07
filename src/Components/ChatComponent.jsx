@@ -14,7 +14,7 @@ const ChatComponent = () => {
         <Avatar/>
         <div className="chatComponentHeaderInfo">
         <h3>Room name</h3>
-        <p>Last seen at...</p>
+        <p>description...</p>
         </div>
         <div className="chatComponentHeaderRight">
            <IconButton>
