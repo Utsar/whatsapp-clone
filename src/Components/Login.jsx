@@ -26,26 +26,22 @@ const Login = () => {
 
     function authenticate (){
         try{
-<<<<<<< Updated upstream
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login`,{
-=======
         axios.post(`${url}/user/login`,{
->>>>>>> Stashed changes
                 email:email,
                 password:password
             },{withCredentials:true}).then((res)=>{
             if(res && res.status === 200){
             console.log("Logged in successfully")
             //redirect to main application
-            setTimeout(()=>{
-                try{
-                    axios.get(`${url}/user/me`,{
-                      withCredentials:true //cookies automatically attached with withCredentials
-                    }).then((res)=>console.log(res))
-                }catch(err){
-                    console.log(err)
-                }
-            },1500)
+
+            try{
+                axios.get(`${url}/user/me`,{
+                  withCredentials:true //cookies automatically attached with withCredentials
+                }).then((res)=>console.log(res))
+            }catch(err){
+                console.log(err)
+            }
+    
         }
            else {
                 setError(true)

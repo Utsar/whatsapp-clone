@@ -29,11 +29,7 @@ function handleSignUp(){
 
 function authenticate(){
     try{
-<<<<<<< Updated upstream
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register`,{
-=======
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register`,{
->>>>>>> Stashed changes
                 name:name,
                 email:email,
                 password:password
