@@ -1,7 +1,7 @@
 
 import {Container,Row} from 'react-bootstrap';
 
-import {BrowserRouter as Router,Switch,Redirect,Route} from 'react-router-dom';
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import Login from "./Login.jsx"
 import SignUp from "./SignUp.jsx"
 
