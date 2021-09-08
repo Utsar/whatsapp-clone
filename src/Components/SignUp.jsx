@@ -29,7 +29,7 @@ function handleSignUp(){
 
 function authenticate(){
     try{
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register`,{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register`,{
                 name:name,
                 email:email,
                 password:password
@@ -56,7 +56,7 @@ function authenticate(){
                         {error && <Alert variant="warning"><small>{`An error occurred , please try again later.`}</small></Alert>}
                             <Form.Group>
                                 <h3>Sign Up</h3>
-                                <p style={{color:"black" }}>Have an account already?<Link to="/" style={{color:"#00E676"}}> Login</Link></p>
+                                <p style={{color:"black" }}>Have an account already?<Link to="/Login" style={{color:"#00E676"}}> Login</Link></p>
                             </Form.Group>
             
 

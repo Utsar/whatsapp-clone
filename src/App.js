@@ -4,9 +4,21 @@ import "./App.css";
 import ChatComponent from "./Components/ChatComponent";
 import Sidebar from "./Components/Sidebar";
 import Home from "./Components/Home.jsx";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import {useEffect} from 'react';
+import axios from "axios";
 
 function App() {
+  useEffect(()=>{
+    try{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/me`,{
+          withCredentials:true //cookies automatically attached with withCredentials
+        }).then((res)=>console.log(res.data))
+      }catch(err){
+        console.log(err)
+      }
+
+  },[])
   return (
     <BrowserRouter>
       <div className="app">

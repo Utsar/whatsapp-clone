@@ -11,6 +11,11 @@ max-width:400px;
 margin:3rem auto 0 auto;
 `
 
+// Upon login with valid credentials client receives cookie, and this cookie is used to authorize client to do some stuff. 
+// If you’re logged as Britney you can’t send a message as Whitney. Because you having Britney’s token. 
+// And the token itself is just an encoded user object. So server decodes it and that’s how you’re receiving current user object upon GET /me
+// It simply decodes the token from your cookie, which is automatically attached as long as http request sent with withCredentials:true
+
 
 const Login = () => {
     const [email,setEmail] = useState("")
@@ -20,7 +25,7 @@ const Login = () => {
 
     function authenticate (){
         try{
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/login`,{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login`,{
                 email:email,
                 password:password
             },{withCredentials:true}).then((res)=>{
@@ -44,7 +49,7 @@ const Login = () => {
                     <Form>
                         {error && <Alert variant="warning"><small>{`No account exist for ${email}, please sign up for a new account.`}</small></Alert>}
                         <h3>Login</h3>
-                        <p style={{color:"black" }}>Dont have an account?<Link to="SignUp" style={{color:"#00E676"}}> Sign Up</Link></p>
+                        <p style={{color:"black" }}>Dont have an account?<Link to="/register" style={{color:"#00E676"}}> Sign Up</Link></p>
                         <Form.Group className="mb-3">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e)=>setEmail(e.target.value)}required/>
