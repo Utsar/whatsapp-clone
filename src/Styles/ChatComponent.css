@@ -62,6 +62,7 @@
 .chatComponentMessagebar > form{
     flex: 1;
     display: flex;
+    border: none;
 }
 
 .chatComponentMessagebar > form > button{
