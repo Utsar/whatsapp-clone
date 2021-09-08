@@ -29,7 +29,7 @@ function handleSignUp(){
 
 function authenticate(){
     try{
-        axios.post("http://localhost:3030/api/v1/user/register",{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register`,{
                 name:name,
                 email:email,
                 password:password
