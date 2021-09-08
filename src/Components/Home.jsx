@@ -8,8 +8,8 @@ import SignUp from "./SignUp.jsx"
 
 let routes = (
     <Switch>
-                    <Route exact path="/" component={(...routerProps)=> <Login {...routerProps}/> }/>
-                    <Route path="/SignUp" component={(...routerProps)=> <SignUp {...routerProps}/> }/>
+                    <Route path="/login" component={(...routerProps)=> <Login {...routerProps}/> }/>
+                    <Route path="/register" component={(...routerProps)=> <SignUp {...routerProps}/> }/>
     </Switch>)
                 
 const Home = () => {
