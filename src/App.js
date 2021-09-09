@@ -26,7 +26,7 @@ function App(props) {
       <div className="app">
         <div className="appBody">
           <Route path={["/login", "/register"]} exact component={Home} />
-          <Route path="/" exact>
+          <Route path="/chat" exact>
             <Sidebar />
             <ChatComponent />
           </Route>

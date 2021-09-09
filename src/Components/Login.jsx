@@ -44,7 +44,7 @@ const Login = ({ history }) => {
                 .get(`${url}/user/me`, {
                   withCredentials: true, //cookies automatically attached with withCredentials
                 })
-                .then((res) => (res.data ? history.push("/") : null));
+                .then((res) => (res.data ? history.push("/chat") : null));
             } catch (err) {
               console.log(err);
             }

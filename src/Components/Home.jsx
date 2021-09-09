@@ -1,4 +1,5 @@
-
+import ChatComponent from "./ChatComponent";
+import Sidebar from "./Sidebar";
 import {Container,Row} from 'react-bootstrap';
 
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
@@ -10,6 +11,10 @@ let routes = (
     <Switch>
             <Route path="/login" component={(...routerProps)=> <Login {...routerProps}/> }/>
             <Route path="/register" component={(...routerProps)=> <SignUp {...routerProps}/> }/>
+            <Route path="/chat" exact>
+            <Sidebar />
+            <ChatComponent />
+          </Route>
     </Switch>)
                 
 const Home = () => {
