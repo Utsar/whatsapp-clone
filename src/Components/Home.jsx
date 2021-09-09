@@ -1,7 +1,7 @@
 import ChatComponent from "./ChatComponent";
 import Sidebar from "./Sidebar";
 import {Container,Row} from 'react-bootstrap';
-
+import Header from "./Header.jsx"
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import Login from "./Login.jsx"
 import SignUp from "./SignUp.jsx"
@@ -11,15 +11,12 @@ let routes = (
     <Switch>
             <Route path="/login" component={(...routerProps)=> <Login {...routerProps}/> }/>
             <Route path="/register" component={(...routerProps)=> <SignUp {...routerProps}/> }/>
-            <Route path="/chat" exact>
-            <Sidebar />
-            <ChatComponent />
-          </Route>
     </Switch>)
                 
 const Home = () => {
 
     return (  
+
         <Container style={{height:"100vh",backgroundImage:"linear-gradient(to top,#00E676 5%,#fff ,#fff ,#fff ,#fff ,#fff  )"}} fluid>
           
                 <Row className="py-3 px-3" style={{boxShadow:"0 3px 3px rgba(100,100,100,.3)"}} >

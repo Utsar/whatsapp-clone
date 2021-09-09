@@ -4,25 +4,25 @@ import "./App.css";
 import ChatComponent from "./Components/ChatComponent";
 import Sidebar from "./Components/Sidebar";
 import Home from "./Components/Home.jsx";
-import { BrowserRouter, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { Route ,useHistory} from "react-router-dom";
+import {useEffect} from 'react';
 import axios from "axios";
 
-function App(props) {
-  useEffect(() => {
-    try {
-      axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/user/me`, {
-          withCredentials: true, //cookies automatically attached with withCredentials
-        })
-        .then((res) => (res ? console.log(res.data) : console.log("No data")))
-        .catch((err) => console.log(err));
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+
+function App() {
+
+  // const [userLoggedIn,setUserLoggedIn] = useState(false);
+const history = useHistory();
+  useEffect(()=>{
+   
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/me`,{
+          withCredentials:true //cookies automatically attached with withCredentials
+        }).then((res)=> history.push("/chat"))
+        .catch((err)=>history.push("/login"))
+    
+
+  },[])
   return (
-    <BrowserRouter>
       <div className="app">
         <div className="appBody">
           <Route path={["/login", "/register"]} exact component={Home} />
@@ -32,8 +32,8 @@ function App(props) {
           </Route>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
+
 
 export default App;
