@@ -9,15 +9,19 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ChatComponent = () => {
-  const [rooms, setRooms] = useState([]);
+const ChatComponent = (props) => {
+  const url = process.env.REACT_APP_BACKEND_URL
+  const [rooms, setRooms] = useState([])
+  const [message,setMessage] = useState('')
+  const [selectedRoom, setSelectedRoom] = useState("")
   const getRooms = () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/chats/my-rooms`, {
+        .get(`${url}/api/v1/chats/my-rooms`, {
           withCredentials: true,
         })
         .then((res) => {
+        console.log(res.data)
           setRooms(res.data);
         })
         .catch((err) => console.log(err));
@@ -25,9 +29,36 @@ const ChatComponent = () => {
       console.log(error);
     }
   };
+  
+  useEffect(()=>{ //Room Id is drilled here when clicking a room in side chat
+    if(props.selectedRoomId){ // Needs to be refactored using Redux
+      console.log(props.selectedRoomId)
+      setSelectedRoom(props.selectedRoomId)
+    }
+  }, [props.selectedRoomId]);
+
   useEffect(() => {
     getRooms();
+
   }, []);
+
+  const sendMessage = (e)=>{
+    console.log("Preparing to send message")
+    e.preventDefault()
+              axios
+                .post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/chats/new-message`, {
+                  roomId:selectedRoom,
+                message:message
+                },{withCredentials:true})
+                .then((res) => {
+                  console.log(res.data)
+                    console.log("Message sent")
+                })
+                .catch((err) => {
+                  console.log(err)
+                });
+      }
+  
   return (
     <div className="chatComponent">
       <div className="chatComponentHeader">
@@ -91,10 +122,12 @@ const ChatComponent = () => {
         <InsertEmoticonIcon />
         <AttachFileIcon />
         <form>
-          {/* imput will have value={input} onChange={(e) => setInput(e.target.value)} */}
-          <input placeholder="Type a message" type="text" />
+          {/* input will have value={input} onChange={(e) => setInput(e.target.value)} */}
+          <input placeholder="Type a message" value={message} onKeyDown={(e)=> e.key === "Enter" ? sendMessage(e):null} onChange={(e)=> setMessage(e.target.value)} type="text" />
 
-          <button type="submit">Send a message</button>
+
+          {/* addEventListener("keydown", function (e) { if (e. code === "Enter") { //checks whether the pressed key is "Enter" validate(e); } }); function validate(e) { var text = e. target. value; //validation of the input... } */}
+          {/* <button onClick={()=>sendMessage()}>Send a message</button> */}
         </form>
         <MicNoneIcon />
       </div>

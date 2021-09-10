@@ -1,14 +1,20 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
 import "../Styles/SidebarChat.css";
-const SidebarChat = ({ rooms }) => {
+const SidebarChat = (props) => {
+
+
+  function sendRoomIdToChat(roomId) {
+    console.log(roomId);
+    props.selectedRoom(roomId);
+  }
   return (
     <div className="sidebarChat">
       <Avatar />
       <div className="sidebarChatInfo">
-        {rooms.length > 0 ? (
-          rooms.map((room) => (
-            <div key={room.id}>
+        {props.rooms.length > 0 ? (
+          props.rooms.map((room) => (
+            <div onClick={()=> sendRoomIdToChat(room._id)} key={room._id}>
               <p>{room._id}</p>
             </div>
           ))
