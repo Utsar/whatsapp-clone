@@ -9,12 +9,19 @@ import SidebarChat from "./SidebarChat";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Sidebar = () => {
+
+const Sidebar = (props) => {
+
+  function selectedRoomId(roomId){
+    console.log(roomId)
+   props.sendSelectedRoomId(roomId);
+  };
+  
   const [rooms, setRooms] = useState([]);
   const getRooms = () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/chats/my-rooms`, {
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/chats/my-rooms`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -51,7 +58,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebarChats">
-        <SidebarChat rooms={rooms} />
+        <SidebarChat selectedRoom={(roomId)=> selectedRoomId(roomId)} rooms={rooms} />
       </div>
     </div>
   );
