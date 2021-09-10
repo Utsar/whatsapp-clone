@@ -30,8 +30,8 @@ const ChatComponent = (props) => {
     }
   };
   
-  useEffect(()=>{
-    if(props.selectedRoomId){
+  useEffect(()=>{ //Room Id is drilled here when clicking a room in side chat
+    if(props.selectedRoomId){ // Needs to be refactored using Redux
       console.log(props.selectedRoomId)
       setSelectedRoom(props.selectedRoomId)
     }
