@@ -1,0 +1,98 @@
+.navMenu {
+  background-color: white;
+  width: 476px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.navMenu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.navProfile {
+  height: 125px;
+  background-color: #128c7e;
+  color: white;
+  font-weight: 650;
+}
+.navProfile > p {
+  position: relative;
+  top: 60px;
+  left: 60px;
+}
+.navArrow {
+  position: relative;
+  top: 85px;
+  left: 25px;
+}
+
+.navAvatar {
+  position: relative;
+  top: 60px;
+  left: 150px;
+  height: 30px;
+}
+
+.navName {
+  position: relative;
+  background-color: lightgray;
+  top: 125px;
+  height: 85px;
+}
+.navName > p {
+  padding: 15px;
+  color: #128c7e;
+}
+
+.navMid {
+  position: relative;
+  top: 175px;
+  height: 30px;
+}
+.navMid > p {
+  padding: 15px;
+  color: lightgrey;
+}
+.navAbout {
+  background-color: lightgray;
+  position: relative;
+  top: 250px;
+  height: 85px;
+}
+
+.navAbout > p {
+  padding: 15px;
+  color: #128c7e;
+}
+
+.navMenuItems {
+  width: 100%;
+}
+
+.navPenIcon {
+  position: relative;
+  margin-left: 430px;
+  margin-bottom: 100px;
+  margin-top: -20px;
+}
+
+.profile-toggle {
+  background-color: #060b26;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+/* span {
+  margin-left: 16px;
+} */
