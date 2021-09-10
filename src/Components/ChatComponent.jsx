@@ -10,10 +10,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const ChatComponent = (props) => {
-  const url = process.env.REACT_APP_BACKEND_URL
-  const [rooms, setRooms] = useState([])
-  const [message,setMessage] = useState('')
-  const [selectedRoom, setSelectedRoom] = useState("")
+  const url = process.env.REACT_APP_BACKEND_URL;
+  const [rooms, setRooms] = useState([]);
+  const [message, setMessage] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState("");
   const getRooms = () => {
     try {
       axios
@@ -21,7 +21,7 @@ const ChatComponent = (props) => {
           withCredentials: true,
         })
         .then((res) => {
-        console.log(res.data)
+          console.log(res.data);
           setRooms(res.data);
         })
         .catch((err) => console.log(err));
@@ -29,36 +29,41 @@ const ChatComponent = (props) => {
       console.log(error);
     }
   };
-  
-  useEffect(()=>{ //Room Id is drilled here when clicking a room in side chat
-    if(props.selectedRoomId){ // Needs to be refactored using Redux
-      console.log(props.selectedRoomId)
-      setSelectedRoom(props.selectedRoomId)
+
+  useEffect(() => {
+    //Room Id is drilled here when clicking a room in side chat
+    if (props.selectedRoomId) {
+      // Needs to be refactored using Redux
+      console.log(props.selectedRoomId);
+      setSelectedRoom(props.selectedRoomId);
     }
   }, [props.selectedRoomId]);
 
   useEffect(() => {
     getRooms();
-
   }, []);
 
-  const sendMessage = (e)=>{
-    console.log("Preparing to send message")
-    e.preventDefault()
-              axios
-                .post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/chats/new-message`, {
-                  roomId:selectedRoom,
-                message:message
-                },{withCredentials:true})
-                .then((res) => {
-                  console.log(res.data)
-                    console.log("Message sent")
-                })
-                .catch((err) => {
-                  console.log(err)
-                });
-      }
-  
+  const sendMessage = (e) => {
+    console.log("Preparing to send message");
+    e.preventDefault();
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/chats/new-message`,
+        {
+          roomId: selectedRoom,
+          message: message,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+        console.log("Message sent");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="chatComponent">
       <div className="chatComponentHeader">
@@ -88,20 +93,20 @@ const ChatComponent = (props) => {
           </IconButton>
         </div>
       </div>
-      {rooms.length > 0 ? (
-        rooms.map((room) =>
-          room.messages.map((mess) => (
-            <div className="chatComponentBody" key={mess._id}>
-              <p className="chatComponentMessage">
+      <div className="chatComponentBody">
+        {rooms.length > 0 ? (
+          rooms.map((room) =>
+            room.messages.map((mess) => (
+              <p className="chatComponentMessage" key={mess._id}>
                 <span className="chatComponentBodyUserInfo">{mess.user}</span>
                 {mess.message}
               </p>
-            </div>
-          ))
-        )
-      ) : (
-        <h1>Loading...</h1>
-      )}
+            ))
+          )
+        ) : (
+          <h3>No messages yet</h3>
+        )}
+      </div>
       {/* <div className="chatComponentBody">
         <p className="chatComponentMessage">
           <span className="chatComponentBodyUserInfo">Hello im the name!</span>
@@ -123,8 +128,13 @@ const ChatComponent = (props) => {
         <AttachFileIcon />
         <form>
           {/* input will have value={input} onChange={(e) => setInput(e.target.value)} */}
-          <input placeholder="Type a message" value={message} onKeyDown={(e)=> e.key === "Enter" ? sendMessage(e):null} onChange={(e)=> setMessage(e.target.value)} type="text" />
-
+          <input
+            placeholder="Type a message"
+            value={message}
+            onKeyDown={(e) => (e.key === "Enter" ? sendMessage(e) : null)}
+            onChange={(e) => setMessage(e.target.value)}
+            type="text"
+          />
 
           {/* addEventListener("keydown", function (e) { if (e. code === "Enter") { //checks whether the pressed key is "Enter" validate(e); } }); function validate(e) { var text = e. target. value; //validation of the input... } */}
           {/* <button onClick={()=>sendMessage()}>Send a message</button> */}
