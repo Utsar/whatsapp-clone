@@ -15,6 +15,18 @@ import axios from "axios";
 const Sidebar = (props) => {
   // Profile
   const [profile, setProfile] = useState(false);
+  const [user, setUser] = useState({});
+
+  const getUser = async () => {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/me`,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(res.data);
+    setUser(res.data);
+  };
 
   const showProfile = () => setProfile(!profile);
 
@@ -39,12 +51,13 @@ const Sidebar = (props) => {
     }
   };
   useEffect(() => {
+    getUser();
     getRooms();
   }, []);
   return (
     <div className="sidebar">
       <div className="sidebarHeader">
-        <Avatar onClick={showProfile} />
+        <Avatar src={user?.avatar} onClick={showProfile} />
         <nav className={profile ? "navMenu active" : "navMenu"}>
           <div className="navMenuItems" onClick={showProfile}>
             <div className="navProfile">
@@ -53,6 +66,7 @@ const Sidebar = (props) => {
             </div>
             <div className="navProfileAvatar">
               <Avatar
+                src={user?.avatar}
                 className="navAvatar"
                 style={{ height: "150px", width: "150px" }}
               />
